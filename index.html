@@ -5,29 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bootstrap Project</title>
     <link rel="stylesheet" href="main.css">
-
+    <link rel="stylesheet" href="/custom.css/homepage.css">
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="/images/logo (2).png" alt="Bootstrap" width="75" height="75">
+      </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Features</a>
-              <a class="nav-link" href="#">Pricing</a>
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </div>
-          </div>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto" >
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
         </div>
-      </nav>
+    </div>
+</nav>
+
+
+<!-- Hero Section -->
+<div class="hero-section">
+  <img src="/images/auction-website.png" alt="Hero Image" class="hero-image">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <h1>hell</h1>
+              <p>Your hero section content goes here.</p>
+              <a href="#" class="btn btn-primary hero-button">Get Started</a>
+          </div>
+      </div>
+  </div>
+</div>
+
       
 </body>
 </html>
