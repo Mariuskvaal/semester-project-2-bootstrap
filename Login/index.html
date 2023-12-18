@@ -64,7 +64,7 @@
                 <div class="card-body">
 
             <!-- Login Form -->
-            <form class="formclass mt-3" id="loginForm" method="POST" action="/auction/auth/login"> 
+            <form class="formclass mt-3" id="loginForm" method="POST" action="/auth/login"> 
 
                 <i class="fa-solid fa-envelope"></i>
                 <input placeholder="Email" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$" title="please match the requirements">
@@ -74,6 +74,8 @@
         
                 <button type="submit"> Login </button>
             </form>
+
+            <div id="message"></div>
 
             <!-- Register Form -->
             <form class="formclass mt-3 hidden" id="registerForm" method="POST" action="/auction/auth/register">
