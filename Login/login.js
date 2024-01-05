@@ -1,31 +1,27 @@
 async function loginUser(email, password) {
-    // Endpoint URL
-    const url = 'https://api.noroff.dev/api/v1/auction/auth/login';
-
-    // Form data
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('password', password);
+    const loginUrl = 'api.noroff.dev/api/v1/auction/auth/login';
 
     try {
-        // Make the POST request
-        const response = await fetch(url, {
+        const response = await fetch(loginUrl, {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
         });
 
-        // Check if the request was successful
         if (response.ok) {
             console.log('Login successful');
-            // Handle successful login here (e.g., redirect to another page)
+            // Additional handling of response data here, if needed
         } else {
-            console.error('Login failed');
-            // Handle login failure here (e.g., show error message)
+            const errorText = await response.text();
+            console.error('Login failed:', errorText);
         }
     } catch (error) {
         console.error('Error during login:', error);
     }
 }
 
-// Example usage
-// loginUser('user@example.com', 'password123');
