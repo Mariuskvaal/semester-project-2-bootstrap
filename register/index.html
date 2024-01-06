@@ -15,10 +15,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"> 
 
-    <style>
-        .hidden { display: none; }
-    </style>
-
 </head>
 <body> 
 
@@ -54,32 +50,60 @@
     <div class="row">
         <div class="col-12 col-md-8 col-lg-6 mx-auto">
 
-            <h1> Log in </h1>
+            <h1> Register </h1>
 
             <div class="card">
                 <div class="card-body">
 
-            <!-- Login Form -->
-            <form class="formclass mt-3" id="loginForm" method="POST"> 
 
-                <i class="fa-solid fa-envelope"></i>
-                <input placeholder="Email" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$" title="please match the requirements">
-        
-                <i class="fa-solid fa-lock"></i>
-                <input placeholder="Password" type="password" name="password" required minlength="8">
-        
-                <button type="submit"> Login </button>
+            <!-- Register Form -->
+            <form class="formclass mt-3 hidden" id="registerForm" method="POST" action="/auction/auth/register">
+                          <i class="fa-solid fa-user"></i>
+          <input
+            placeholder="Name"
+            type="text"
+            name="name"
+            required
+            pattern="^[\w]+$"
+            title="username must only contain lower case and upper case letters, numbers and underscore (_). example"
+          />
+
+          <i class="fa-solid fa-envelope"></i>
+          <input
+            placeholder="Email"
+            type="email"
+            name="email"
+            required
+            pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+            title="please match the requiredments"
+          />
+
+          <i class="fa-solid fa-lock"></i>
+          <input
+            placeholder="Password"
+            type="password"
+            name="password"
+            required
+            minlength="8"
+          />
+
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input placeholder="banner" type="url" name="banner" />
+
+          <i class="fa-solid fa-user-plus"></i>
+          <input placeholder="avatar" type="url" name="avatar" />
+
+          <div id="reg-message"></div>
+
+          <button type="submit">Register</button>
             </form>
-
-            <p id="message"></p>
-
 
 
         </div>
     </div>
 </div>              
 <div>
-                <button onclick="window.location.href='/register/index.html'" class="btn btn-primary" style="margin: 10px; background-color: beige; color: black";>Register an account</button>
+                <button onclick="window.location.href='/Login/index.html'" class="btn btn-primary" style="margin: 10px; background-color: beige; color: black ;">Allready have an account? click here for login</button>
             </div>
 </div>
 </div>
@@ -125,6 +149,7 @@
     <p>&copy; 2023 Your Auction Website</p>
 </footer>
 
+<script src="register.js"></script>
 <script src="login2.js"></script>
 
 
