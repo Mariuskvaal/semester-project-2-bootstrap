@@ -26,19 +26,24 @@ async function loginUser(url, data) {
       body: JSON.stringify(data),
     };
     const response = await fetch(url, postData);
-    console.log(response);
     const json = await response.json();
-    const accessToken = json.accessToken;
-    localStorage.setItem('accessToken', accessToken);
-    console.log(json);
-    // Logs:
-    // accessToken: "eyJhbGciOiJIuzI1NiIsInR...
-    // avatar: ""
-    // email: "test-account-a@noroff.no
-    // name: "test_account_a"
-    return json;
+
+    // Check if login was successful
+    if (response.ok && json.accessToken) {
+      const accessToken = json.accessToken;
+      localStorage.setItem('accessToken', accessToken);
+
+      // Redirect to the new page here, e.g., 'dashboard.html'
+      window.location.href = '/profile/profile.html';
+    } else {
+      // Handle login failure (e.g., show an error message)
+      console.log('Login failed: ', json);
+      document.getElementById('message').textContent = 'Login failed: ' + (json.message || 'Unknown error');
+    }
   } catch (error) {
     console.log(error);
+    document.getElementById('message').textContent = 'Error: ' + error.message;
   }
 }
+
 
