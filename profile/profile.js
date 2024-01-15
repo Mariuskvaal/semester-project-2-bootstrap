@@ -10,7 +10,7 @@ const token = localStorage.getItem("accessToken"); // Replace "accessToken" with
 
 // Function to call the API endpoint to get the user's profile
 function getUserProfile() {
-  fetch(`https://api.noroff.dev/api/v1/auction/profiles/${encodeURIComponent(userDataName)}`, {
+  fetch(`https://api.noroff.dev/api/v1/auction/profiles`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -40,6 +40,8 @@ function getUserProfile() {
     <li class="list-group-item"><strong>Wins:</strong> ${profileData.wins && profileData.wins.length > 0 ? profileData.wins.join(', ') : 'No wins'}</li>
   </ul>
     `;
+
+    console.log(profileData.name);
 
     // Set the inner HTML of the profile container
     profileContainer.innerHTML = profileHTML;

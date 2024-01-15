@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function loginUser(url, data) {
   try {
+    // Clear any existing user data in localStorage
+    localStorage.clear();
+
     const postData = {
       method: 'POST',
       headers: {
@@ -27,16 +30,21 @@ async function loginUser(url, data) {
     };
     const response = await fetch(url, postData);
     const json = await response.json();
+    console.log("Login response", json);
 
     // Check if login was successful
     if (response.ok && json.accessToken) {
-      const accessToken = json.accessToken;
-      localStorage.setItem('accessToken', accessToken);
+      // Set the new access token
+      localStorage.setItem('accessToken', json.accessToken);
 
-      // Redirect to the new page here, e.g., 'dashboard.html'
+      // Store the entire response object (or the parts you need) in localStorage
+      // Adjust this according to your requirements
+      localStorage.setItem('user', JSON.stringify(json));
+
+      // Redirect to the new page
       window.location.href = '/profile/profile.html';
     } else {
-      // Handle login failure (e.g., show an error message)
+      // Handle login failure
       console.log('Login failed: ', json);
       document.getElementById('message').textContent = 'Login failed: ' + (json.message || 'Unknown error');
     }
@@ -45,5 +53,3 @@ async function loginUser(url, data) {
     document.getElementById('message').textContent = 'Error: ' + error.message;
   }
 }
-
-
