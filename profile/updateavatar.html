@@ -46,22 +46,28 @@
     </div>
 </nav>
 
+<div class="container m-5">
 <div> 
-    <h1 class="text-center">Profile</h1>
-    <h3 class="text-center mb-4">This is the profile page</h3>
-</div>
-
-<div id="profile" class="container">
-<div id="profileContainer"></div>
-</div>
+    <h1 class="text-center">Update Avatar</h1>
+    <h3 class="text-center mb-4">This is the avatar</h3>
 
 
+<div class="container" style="height: 50vh;">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-auto">
+            <i class="fa-solid fa-user-plus"></i>
+        </div>
+        <div id="inputUpdateAvatar" class="col-auto">
+            <input placeholder="Avatar URL" type="url" name="avatar" class="form-control" />
+        </div>
+        <div id="buttonUpdateAvatar" class="col-auto">
+            <button type="button" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</div>
+</div>
 </div>
 
-<div class="d-flex justify-content-center">
-    <button onclick="logout()" type="button" class="btn btn-danger m-4">Logout</button>
-    <button onclick="redirectToUpdateavatarHtml()" type="button" class="btn btn-success m-4">Update Avatar</button>   
-</div>
 
 
 <!-- Footer -->
@@ -102,10 +108,7 @@
     <p>&copy; 2023 Your Auction Website</p>
 </footer>
 
-<script src="profile2.js"></script>
-<script src="showalllistings.js"></script>
-<script src="logout.js"></script>
-<script src="updateAvatarButton.js"></script>
+<script src="avatarbutton.js"></script>
 
 
 
