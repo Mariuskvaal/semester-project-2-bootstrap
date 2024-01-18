@@ -1,4 +1,3 @@
-// Retrieve the 'user' data from localStorage and parse it as JSON
 const storedUserData = localStorage.getItem('user');
 const userData = storedUserData ? JSON.parse(storedUserData) : {};
 const userName = userData.name; // Assuming the name is stored in this property

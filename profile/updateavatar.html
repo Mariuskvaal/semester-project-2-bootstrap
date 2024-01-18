@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="/main.css">
 
-    <link rel="stylesheet" href="/custom.css/profile.css">
+    <link rel="stylesheet" href="/custom.css/updateAvatar.css">
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -52,7 +52,7 @@
     <h3 class="text-center mb-4">This is the avatar</h3>
 
 
-<div class="container" style="height: 50vh;">
+<div class="container" style="height: 30vh;">
     <div class="row justify-content-center align-items-center">
         <div class="col-auto">
             <i class="fa-solid fa-user-plus"></i>
@@ -62,11 +62,26 @@
         </div>
         <div id="buttonUpdateAvatar" class="col-auto">
             <button type="button" class="btn btn-primary">Submit</button>
+        </div>              
+
+        <div id="successMessage"></div>   <h1 id="successText" style="display: none;"> Success Update </h1>
+        <div id="checkmarkContainer" style="display: none;">
+            <svg id="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+             
+            </svg>
+
         </div>
+
     </div>
+</div>                
+            </div>
 </div>
 </div>
-</div>
+
+
+
 
 
 
