@@ -1,3 +1,44 @@
+function fetchListings(page) {
+    const offset = page * listingsPerPage;
+
+    // Retrieve the token from localStorage
+    const token = localStorage.getItem("accessToken"); // Replace "accessToken" with the actual key used in your localStorage
+
+    // Check if the token is available
+    if (!token) {
+        console.error("Access token not found in localStorage.");
+        return;
+    }
+
+    fetch(`https://api.noroff.dev/api/v1/auction/listings?limit=${listingsPerPage}&offset=${offset}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`, // Use the retrieved token
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        displayListings(data);
+    })
+    .catch(error => {
+        console.error('There was a problem with your fetch operation:', error);
+    });
+}
+
+// Rest of your code remains the same
+
+
+
+
+
+
 let currentPage = 0;
 const listingsPerPage = 10;
 
@@ -32,6 +73,18 @@ function displayListings(listings) {
         // Generate media images
         const mediaImage = listing.media.length > 0 ? `<img src="${listing.media[0]}" class="card-img-top" alt="Listing Image" style="max-height:400px;">` : '';
 
+        // Generate bids information
+        let bidsInfo = '';
+        if (listing.bids && listing.bids.length > 0) {
+            bidsInfo = '<ul>';
+            listing.bids.forEach(bid => {
+                bidsInfo += `<li>${bid.bidderName}: $${bid.amount}</li>`;
+            });
+            bidsInfo += '</ul>';
+        } else {
+            bidsInfo = '<p>No bids yet</p>';
+        }
+
         card.innerHTML = `
             ${mediaImage}
             <div class="card-body">
@@ -42,12 +95,16 @@ function displayListings(listings) {
                 <p class="card-text"><small class="text-muted">Updated: ${new Date(listing.updated).toLocaleDateString()}</small></p>
                 <p class="card-text"><small class="text-muted">Ends At: ${new Date(listing.endsAt).toLocaleDateString()}</small></p>
                 <p class="card-text"><small class="text-muted">Bids: ${listing._count.bids}</small></p>
+                <div class="bids-info">${bidsInfo}</div>
             </div>
         `;
         container.appendChild(card);
     });
     updatePageInfo();
 }
+
+    updatePageInfo();
+
 function updatePageInfo() {
     const startNumber = currentPage * listingsPerPage + 1;
     const endNumber = startNumber + listingsPerPage - 1;
