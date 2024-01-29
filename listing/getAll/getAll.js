@@ -25,6 +25,13 @@ function displayListings(listings) {
     listings.forEach(listing => {
         const card = document.createElement('div');
         card.className = 'card mb-4 shadow-sm'; // Bootstrap card with shadow
+        card.style.cursor = 'pointer'; // Change cursor on hover
+
+        // Sample redirect URL, replace with actual URL from listing if available
+        const redirectUrl = `/listing/SpecificPost/SpecificPost.html?listingId=${listing.id}`;
+
+        console.log(`Listing ID: ${listing.id}`); // Add this line to debug
+
 
         // Generate comma-separated tags string
         const tagsString = listing.tags.join(', ');
@@ -44,10 +51,18 @@ function displayListings(listings) {
                 <p class="card-text"><small class="text-muted">Bids: ${listing._count.bids}</small></p>
             </div>
         `;
+
+        // Add click event listener for redirect
+        card.addEventListener('click', function() {
+            window.location.href = redirectUrl;
+        });
+
         container.appendChild(card);
     });
+
     updatePageInfo();
 }
+
 function updatePageInfo() {
     const startNumber = currentPage * listingsPerPage + 1;
     const endNumber = startNumber + listingsPerPage - 1;
