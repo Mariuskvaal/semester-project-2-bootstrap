@@ -3,40 +3,71 @@ const listingsPerPage = 10;
 
 window.addEventListener('load', function() {
     fetchListings(currentPage);
+
+    document.getElementById('sortOldest').addEventListener('click', function() {
+        fetchListings(currentPage, false); // false for oldest to newest by creation date
+    });
+
+    document.getElementById('sortNewest').addEventListener('click', function() {
+        fetchListings(currentPage, true); // true for newest to oldest by creation date
+    });
+
+    document.getElementById('prevPage').addEventListener('click', function() {
+        if (currentPage > 0) {
+            currentPage--;
+            fetchListings(currentPage);
+        }
+    });
+
+    document.getElementById('nextPage').addEventListener('click', function() {
+        currentPage++;
+        fetchListings(currentPage);
+    });
+
+    document.getElementById('searchButton').addEventListener('click', function() {
+        const searchTerm = document.getElementById('searchInput').value;
+        searchListings(searchTerm);
+    });
 });
 
-function fetchListings(page) {
+function fetchListings(page, sortField = 'created', sortOrder = 'asc') {
     const offset = page * listingsPerPage;
-    fetch(`https://api.noroff.dev/api/v1/auction/listings?limit=${listingsPerPage}&offset=${offset}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        displayListings(data);
-    })
-    .catch(error => {
-        console.error('There was a problem with your fetch operation:', error);
-    });
+    const sortQueryParam = `&sort=${sortField}&sortOrder=${sortOrder}`;
+
+    fetch(`https://api.noroff.dev/api/v1/auction/listings?limit=${listingsPerPage}&offset=${offset}${sortQueryParam}`)
+        .then(response => response.json())
+        .then(data => {
+            displayListings(data);
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
 }
 
-function displayListings(listings) {
+// Update event listeners for sorting buttons
+document.getElementById('sortOldest').addEventListener('click', function() {
+    fetchListings(currentPage, 'created', 'asc');
+});
+
+document.getElementById('sortNewest').addEventListener('click', function() {
+    fetchListings(currentPage, 'created', 'desc');
+});
+
+
+function displayListings(listings, sortNewestFirst = false) {
+    const sortedListings = sortNewestFirst ? sortListingsNewestToOldest(listings) : sortListingsOldestToNewest(listings);
     const container = document.getElementById('listingsContainer');
     container.innerHTML = ''; // Clear existing data
 
-    listings.forEach(listing => {
+    sortedListings.forEach(listing => {
+        console.log(listing.created);
         const card = document.createElement('div');
-        card.className = 'card mb-4 shadow-sm'; // Bootstrap card with shadow
-        card.style.cursor = 'pointer'; // Change cursor on hover
+        card.className = 'card mb-4 shadow-sm';
+        card.style.cursor = 'pointer';
 
-        // Sample redirect URL, replace with actual URL from listing if available
         const redirectUrl = `/listing/SpecificPost/SpecificPost.html?listingId=${listing.id}`;
 
-        console.log(`Listing ID: ${listing.id}`); // Add this line to debug
-
-
-        // Generate comma-separated tags string
         const tagsString = listing.tags.join(', ');
-
-        // Generate media images
         const mediaImage = listing.media.length > 0 ? `<img src="${listing.media[0]}" class="card-img-top" alt="Listing Image" style="max-height:400px;">` : '';
 
         card.innerHTML = `
@@ -52,7 +83,6 @@ function displayListings(listings) {
             </div>
         `;
 
-        // Add click event listener for redirect
         card.addEventListener('click', function() {
             window.location.href = redirectUrl;
         });
@@ -63,6 +93,21 @@ function displayListings(listings) {
     updatePageInfo();
 }
 
+function sortListingsOldestToNewest(listings) {
+    return listings.sort((a, b) => {
+        console.log(`Comparing ${a.created} to ${b.created}`);
+        return new Date(a.created) - new Date(b.created);
+    });
+}
+
+function sortListingsNewestToOldest(listings) {
+    return listings.sort((a, b) => {
+        console.log(`Comparing ${b.created} to ${a.created}`);
+        return new Date(b.created) - new Date(a.created);
+    });
+}
+
+
 function updatePageInfo() {
     const startNumber = currentPage * listingsPerPage + 1;
     const endNumber = startNumber + listingsPerPage - 1;
@@ -70,25 +115,10 @@ function updatePageInfo() {
     document.getElementById('pageInfo').innerText = pageInfo;
 }
 
-// Event listeners for pagination buttons
-document.getElementById('prevPage').addEventListener('click', function() {
-    if (currentPage > 0) {
-        currentPage--;
-        fetchListings(currentPage);
-    }
-});
-
-document.getElementById('nextPage').addEventListener('click', function() {
-    currentPage++;
-    fetchListings(currentPage);
-});
-
-// Search function to filter listings
 function searchListings(term) {
     fetch('https://api.noroff.dev/api/v1/auction/listings')
     .then(response => response.json())
     .then(data => {
-        // Filter listings based on the search term
         const filteredListings = data.filter(listing => 
             listing.title.toLowerCase().includes(term.toLowerCase()) ||
             listing.description.toLowerCase().includes(term.toLowerCase())
@@ -97,12 +127,3 @@ function searchListings(term) {
     })
     .catch(error => console.error('Error:', error));
 }
-
-// Event listener for search button or search input field
-document.getElementById('searchButton').addEventListener('click', function() {
-    const searchTerm = document.getElementById('searchInput').value;
-    searchListings(searchTerm);
-});
-
-
-

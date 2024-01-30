@@ -4,16 +4,24 @@ window.addEventListener('load', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const listingId = urlParams.get('listingId');
     fetchListingDetails(listingId);
-});
 
+    document.getElementById('bidForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (isLoggedIn()) {
+            submitBid(listingId);
+        } else {
+            displayLoginMessage();
+        }
+    });
+});
 
 function fetchListingDetails(listingId) {
     fetch(`https://api.noroff.dev/api/v1/auction/listings/${listingId}?_seller=true&_bids=true`)
-    .then(response => response.json())
-    .then(data => {
-        displayListingDetails(data);
-    })
-    .catch(error => console.error('Error:', error));
+        .then(response => response.json())
+        .then(data => {
+            displayListingDetails(data);
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 function displayListingDetails(listing) {
@@ -26,7 +34,6 @@ function displayListingDetails(listing) {
     document.getElementById('endsAt').innerText = new Date(listing.endsAt).toLocaleDateString();
     document.getElementById('bidsCount').innerText = listing._count.bids;
 
-    // Populate seller information
     const sellerInfo = document.getElementById('sellerInfo');
     sellerInfo.innerHTML = `
         <p>Name: ${listing.seller.name}</p>
@@ -34,19 +41,56 @@ function displayListingDetails(listing) {
         <img src="${listing.seller.avatar}" alt="Seller Avatar" style="max-height: 100px;">
     `;
 
-    // Populate bids list
-    const reversedBids = [...listing.bids].reverse(); // Create a copy of the array and reverse it
-    const bidsList = document.getElementById('bidsList');
-    bidsList.innerHTML = reversedBids.map((bid, index) => {
-        let bidInfoHtml = `
-            <div class="list-group-item${index === 0 ? ' bg-success text-white' : ''}">
-                <p>Bid Amount: $${bid.amount}</p>
-                <p>Bidder Name: ${bid.bidderName}</p>
-                <p>Bid Date: ${new Date(bid.created).toLocaleDateString()}</p>
-            </div>
-        `;
-        return bidInfoHtml;
-    }).join('');
+    if (isLoggedIn()) {
+        populateBidsList(listing.bids);
+    } else {
+        document.getElementById('bidsList').innerHTML = '<li class="list-group-item">You must be logged in to view the bids.</li>';
+    }
 }
 
+function populateBidsList(bids) {
+    const reversedBids = [...bids].reverse();
+    const bidsList = document.getElementById('bidsList');
+    bidsList.innerHTML = reversedBids.map((bid, index) => `
+        <div class="list-group-item${index === 0 ? ' bg-success text-white' : ''}">
+            <p>Bid Amount: $${bid.amount}</p>
+            <p>Bidder Name: ${bid.bidderName}</p>
+            <p>Bid Date: ${new Date(bid.created).toLocaleDateString()}</p>
+        </div>
+    `).join('');
+}
+
+function isLoggedIn() {
+    return Boolean(localStorage.getItem('accessToken'));
+}
+
+function submitBid(listingId) {
+    const bidAmount = document.getElementById('bidAmount').value;
+
+    console.log(bidAmount);
+    const accessToken = localStorage.getItem('accessToken'); 
+
+    fetch(`https://api.noroff.dev/api/v1/auction/listings/${listingId}/bids`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        },
+        body: JSON.stringify({ amount: Number(bidAmount) })
+
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Bid submitted:', data);
+        // Refresh the bids list or show a confirmation message
+    })
+    .catch(error => console.error('Error submitting bid:', error));
+}
+
+function displayLoginMessage() {
+
+    document.querySelector(".loginMessage").innerText = "You must be logged in to make a bid";
+
+    // document.getElementById('loginMessage').innerText = "You must be logged in to make a bid.";
+}
 

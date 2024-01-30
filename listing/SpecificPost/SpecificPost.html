@@ -48,44 +48,51 @@
 
 
 <div class="container mt-4">
-    <div id="listingDetails" class="card">
-        
-        <!-- Seller Section -->
-        <div class="card-header bg-primary text-white text-center">
-            <h2>Seller</h2>
-        </div>
-        <div id="sellerInfo" class="card-body bg-light">
-            <h3 class="card-title">Seller Information</h3>
-            <!-- Seller details will be populated here -->
-        </div>
-
-        <!-- Item for Auction Section -->
-        <div class="card-header bg-success text-white text-center">
-            <h2>Item for Auction</h2>
-        </div>
-        <img id="image" class="card-img-top" src="" alt="Listing Image" style="max-height: 400px; width: 100%; object-fit: cover;">
-        <div class="card-body">
-            <h1 id="title" class="card-title"></h1>
-            <p id="description" class="card-text"></p>
-            <p class="card-text">Tags: <span id="tags"></span></p>
-            <p class="card-text">Created: <span id="created"></span></p>
-            <p class="card-text">Updated: <span id="updated"></span></p>
-            <p class="card-text">Ends At: <span id="endsAt"></span></p>
-            <p class="card-text">Bids Count: <span id="bidsCount"></span></p>
-        </div>
-
-        <!-- Bids Made Section -->
-        <div class="card-header bg-info text-white text-center">
-            <h2>Bids Made</h2>
-        </div>
-        <ul id="bidsList" class="list-group list-group-flush">
-            <li class="list-group-item"><h3>Bids</h3></li>
-            <!-- List of bids will be populated here -->
-        </ul>
+    <!-- Seller Section -->
+    <div class="card-header bg-primary text-white text-center">
+        <h2>Seller</h2>
     </div>
+    <div id="sellerInfo" class="card-body bg-light">
+        <h3 class="card-title">Seller Information</h3>
+        <!-- Seller details will be populated here -->
+    </div>
+
+    <!-- Item for Auction Section -->
+    <div class="card-header bg-success text-white text-center">
+        <h2>Item for Auction</h2>
+    </div>
+    <img id="image" class="card-img-top" src="" alt="Listing Image" style="max-height: 400px; width: 100%; object-fit: cover;">
+    <div class="card-body">
+        <h1 id="title" class="card-title"></h1>
+        <p id="description" class="card-text"></p>
+        <p class="card-text">Tags: <span id="tags"></span></p>
+        <p class="card-text">Created: <span id="created"></span></p>
+        <p class="card-text">Updated: <span id="updated"></span></p>
+        <p class="card-text">Ends At: <span id="endsAt"></span></p>
+        <p class="card-text">Bids Count: <span id="bidsCount"></span></p>
+    </div>
+
+    <!-- Bid Form Section -->
+    <div id="bidFormContainer">
+        <h3>Make a Bid</h3>
+        <form id="bidForm">
+            <input type="number" id="bidAmount" placeholder="Enter your bid amount" required>
+            <button type="submit" class="btn btn-primary">Submit Bid</button>
+        </form>
+    </div>
+
+    <!-- Login Message -->
+    <div class="loginMessage text-danger"></div>
+
+    <!-- Bids Made Section -->
+    <div class="card-header bg-info text-white text-center">
+        <h2>Bids Made</h2>
+    </div>
+    <ul id="bidsList" class="list-group list-group-flush">
+        <li class="list-group-item"><h3>Bids</h3></li>
+        <!-- List of bids will be populated here -->
+    </ul>
 </div>
-
-
 
 
 
