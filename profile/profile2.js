@@ -35,6 +35,8 @@ if (!userName) {
 }
 
 function displayDataAsHtml(data) {
+
+    console.log(data.wins.length);
     // Start building the HTML content with a table
     let htmlContent = `<div class="container mt-5">
         <div class="row justify-content-center">
@@ -45,7 +47,7 @@ function displayDataAsHtml(data) {
                         <tr><th>Email</th><td>${data.email}</td></tr>
                         <tr><th>Avatar</th><td>${data.avatar ? `<img src="${data.avatar}" alt="Avatar" class="img-fluid" style="max-width:100px; max-height:100px;">` : 'N/A'}</td></tr>
                         <tr><th>Total Credits</th><td>${data.credits}</td></tr>
-                        <tr><th>Wins</th><td>${data.wins.length > 0 ? data.wins.join(", ") : 'No wins'}</td></tr>
+                        <tr><th>Wins</th><td>${data.wins.length}</td></tr> 
                         <tr><th>Listings Count</th><td>${data._count.listings}</td></tr>
                     </tbody>
                 </table>

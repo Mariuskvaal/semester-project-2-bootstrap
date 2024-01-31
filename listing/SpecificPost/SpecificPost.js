@@ -5,7 +5,7 @@ window.addEventListener('load', function() {
     const listingId = urlParams.get('listingId');
     fetchListingDetails(listingId);
 
-    document.getElementById('bidForm').addEventListener('submit', function(event) {
+    document.getElementById("bidForm").addEventListener('submit', function(event) {
         event.preventDefault();
         if (isLoggedIn()) {
             submitBid(listingId);
@@ -66,9 +66,7 @@ function isLoggedIn() {
 
 function submitBid(listingId) {
     const bidAmount = document.getElementById('bidAmount').value;
-
-    console.log(bidAmount);
-    const accessToken = localStorage.getItem('accessToken'); 
+    const accessToken = localStorage.getItem('accessToken');
 
     fetch(`https://api.noroff.dev/api/v1/auction/listings/${listingId}/bids`, {
         method: 'POST',
@@ -77,20 +75,45 @@ function submitBid(listingId) {
             'Authorization': `Bearer ${accessToken}`
         },
         body: JSON.stringify({ amount: Number(bidAmount) })
-
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Bid submitted:', data);
-        // Refresh the bids list or show a confirmation message
+    .then(response => {
+        if (response.ok) {
+            return response.json().then(data => {
+                console.log('Bid submitted:', data);
+                // Display success message
+                displayMessage('Bid successfully made!', 'success');
+            });
+        } else {
+            // Handle non-200 responses
+            throw new Error('Failed to submit bid');
+        }
     })
-    .catch(error => console.error('Error submitting bid:', error));
+    .catch(error => {
+        console.error('Error submitting bid:', error);
+        // Display error message
+        displayMessage('OMG!', 'error');
+    });
 }
+
+function displayMessage(message, type) {
+    const messageElement = document.createElement('div');
+    messageElement.innerText = message;
+
+    // Add class based on the type for styling
+    messageElement.className = type === 'success' ? 'alert alert-success' : 'alert alert-danger';
+
+    // Append message to a specific element or the body
+    document.body.appendChild(messageElement);
+
+    // Optionally, remove the message after a delay
+    setTimeout(() => {
+        document.body.removeChild(messageElement);
+    }, 3000); // Adjust time as needed
+}
+
 
 function displayLoginMessage() {
 
     document.querySelector(".loginMessage").innerText = "You must be logged in to make a bid";
-
-    // document.getElementById('loginMessage').innerText = "You must be logged in to make a bid.";
 }
 
