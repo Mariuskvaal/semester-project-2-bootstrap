@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="/main.css">
 
-    <link rel="stylesheet" href="/custom.css/getAll.css">
+    <link rel="stylesheet" href="/custom.css/spesific.css">
 
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -22,7 +22,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/index.html">
         <img src="/images/logo (2).png" alt="Bootstrap" width="75" height="75">
       </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -39,7 +39,7 @@
                     <a class="nav-link" href="../getAll/getAll.html">Listings</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/Login/index.html"> Login </a>
+                    <a id="loginLink" class="nav-link" href="/Login/index.html"> Login </a>
                 </li>
             </ul>
         </div>
@@ -80,6 +80,10 @@
             <button type="submit" class="btn btn-primary">Submit Bid</button>
         </form>
     </div>
+
+    <div class="messageBoxHtml" id="messageBoxHtml"></div>
+
+    <div id="bidMessageManual"></div>
 
     <!-- Login Message -->
     <div class="loginMessage text-danger"></div>
@@ -137,6 +141,7 @@
 </footer>
 
 <script src="SpecificPost.js"></script>
+<script src="/UpdateNav/updateNav.js"></script>
 
 
 

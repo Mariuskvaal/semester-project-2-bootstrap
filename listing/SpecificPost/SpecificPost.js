@@ -1,5 +1,9 @@
 // SpecificPost.js (JavaScript for SpecificPost.html)
 
+
+const unLoggedMessage = document.querySelector("#messageBoxHtml");
+
+
 window.addEventListener('load', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const listingId = urlParams.get('listingId');
@@ -10,7 +14,7 @@ window.addEventListener('load', function() {
         if (isLoggedIn()) {
             submitBid(listingId);
         } else {
-            displayLoginMessage();
+            unLoggedMessage.innerHTML = "Must be logged in to make a bid";
         }
     });
 });
@@ -79,21 +83,31 @@ function submitBid(listingId) {
     .then(response => {
         if (response.ok) {
             return response.json().then(data => {
-                console.log('Bid submitted:', data);
-                // Display success message
-                displayMessage('Bid successfully made!', 'success');
+                unLoggedMessage.innerHTML = " Bid was an success";
+                unLoggedMessage.style.display = 'block';
+                unLoggedMessage.style.color = "#4F8A10";
+                unLoggedMessage.style.background = "#DFF2BF";
             });
         } else {
-            // Handle non-200 responses
-            throw new Error('Failed to submit bid');
+            return response.json().then(data => {
+                console.error('Failed to submit bid:', data);
+                console.error(data.errors[0].message);
+                const responseMessageWithError = data.errors[0].message;
+                unLoggedMessage.innerHTML = responseMessageWithError;
+                unLoggedMessage.style.display = 'block';
+
+            }).catch(error => {
+                // Handling JSON parsing error or other errors gracefully
+                console.error('Error processing response:', error);
+                displayMessage('Error processing response. Please try again.', 'error');
+            });
         }
     })
     .catch(error => {
         console.error('Error submitting bid:', error);
-        // Display error message
-        displayMessage('OMG!', 'error');
+        displayMessage('An error occurred. Please try again.', 'error');
     });
-}
+    
 
 function displayMessage(message, type) {
     const messageElement = document.createElement('div');
@@ -116,4 +130,10 @@ function displayLoginMessage() {
 
     document.querySelector(".loginMessage").innerText = "You must be logged in to make a bid";
 }
+}
 
+
+function bidMessageManual() {
+    const messageElementForBid = document.querySelector("#bidMessageManual");
+    messageElementForBid.innerText = data.errors[0].message;
+}
