@@ -21,8 +21,3 @@ A Bootstrap-based responsive website designed for an engaging user experience ac
 
 ## Contribution
 Feel free to fork the project and submit pull requests for improvements or new features.
-
-## License
-Open-source licensed. Refer to the LICENSE file for details.
-
-This README aims to be both informative and visually appealing, providing a clear overview of the project's capabilities and how to get started.
