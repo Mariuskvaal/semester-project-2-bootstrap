@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Bootstrap Project</title>
+
+    <link rel="stylesheet" href="/main.css">
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Include Font Awesome for icons -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"> 
+
+    <style>
+        .hidden { display: none; }
+    </style>
+
+</head>
+<body> 
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/index.html">
+        <img src="/images/logo (2).png" alt="Bootstrap" width="75" height="75">
+      </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto" >
+                <li class="nav-item active">
+                    <a class="nav-link" href="/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a id="loginLink" class="nav-link" href="/Login/index.html">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5 d-flex justify-content-center" style="padding: 20px; margin: 20px; min-height: auto;">
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
+
+            <h1> Log in </h1>
+
+            <div class="card">
+                <div class="card-body">
+
+            <!-- Login Form -->
+            <form class="formclass mt-3" id="loginForm" method="POST"> 
+
+                <i class="fa-solid fa-envelope"></i>
+                <input placeholder="Email" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$" title="please match the requirements">
+        
+                <i class="fa-solid fa-lock"></i>
+                <input placeholder="Password" type="password" name="password" required minlength="8">
+        
+                <button type="submit"> Login </button>
+            </form>
+
+            <p id="message"></p>
+
+
+
+        </div>
+    </div>
+</div>              
+<div>
+                <button onclick="window.location.href='/register/index.html'" class="btn btn-primary" style="margin: 10px; background-color: beige; color: black";>Register an account</button>
+            </div>
+</div>
+</div>
+
+  
+
+
+<!-- Footer -->
+<footer class="bg-dark text-white">
+    <div class="container py-4">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-3">
+                <h5>Connect with Us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.facebook.com" target="_blank" style="text-decoration: none; color: white;">Facebook</a></li>
+                    <li><a href="https://www.snapchat.com" target="_blank" style="text-decoration: none; color: white;">Snapchat</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" style="text-decoration: none; color: white;">Instagram</a></li>
+                    <li><a href="https://www.tiktok.com" target="_blank" style="text-decoration: none; color: white;">TikTok</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" style="text-decoration: none; color: white;">Home</a></li>
+                    <li><a href="#" style="text-decoration: none; color: white;">About Us</a></li>
+                    <li><a href="#" style="text-decoration: none; color: white;">Services</a></li>
+                    <li><a href="#" style="text-decoration: none; color: white;">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Policy and Agreements</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" style="text-decoration: none; color: white;">Privacy Policy</a></li>
+                    <li><a href="#" style="text-decoration: none; color: white;">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2023 Your Auction Website</p>
+</footer>
+
+<script src="login2.js"></script>
+<script src="/UpdateNav/updateNav.js"></script>
+
+
+      
+</body>
+</html>
