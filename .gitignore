@@ -1,5 +1,5 @@
 # Ignore operating system files
-
+node_modules/
 
 
 #Ignore build artifacts
