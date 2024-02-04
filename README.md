@@ -3,11 +3,11 @@
 ## Overview
 A Bootstrap-based responsive website designed for an engaging user experience across devices, featuring dynamic functionalities such as user profile management and listing creations.
 
-## Features
-- **Responsive Layout:** Utilizes Bootstrap for fluid and adaptable design.
-- **Enhanced Interactivity:** Custom JavaScript scripts for navigation, profile updates, and more.
-- **Visual Appeal:** Integrates Font Awesome icons for a polished look.
-- **Comprehensive Pages:** Includes home, listings, login, and profile pages with dedicated sections for privacy and terms.
+## Code Stack
+- **HTML:** Using Bootstrap Framework for HTML and CSS
+- **CSS:** Using mostly Bootstrap for styling, but also doing some custom css
+- **JAVASCRIPT:** Custom JavaScript scripts for navigation, profile updates, and more.
+- **jQuery:** javascript included with bootstrap.
 
 ## Structure
 - **Home Page (`index.html`):** Entry point with navigation and detailed sections.
