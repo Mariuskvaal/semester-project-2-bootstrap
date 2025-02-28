@@ -44,35 +44,45 @@
     </div>
 </nav>
 
-<div class="container mt-5 d-flex justify-content-center" style="padding: 20px; margin: 20px; min-height: auto;">
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 mx-auto">
+<div class="row col-12 col-md-9 col-lg-6 mx-auto" style="height: 60vh;">
 
-            <h1> Log in </h1>
 
-            <div class="card">
+
+    <div class="row col-12 col-md-9 col-lg-6 mx-auto">
+
+
+        <div class="col-12 w-100">
+
+            <h1 class="text-center mb-4">Log in</h1>
+
+            <div class="card shadow-lg p-3">
                 <div class="card-body">
 
-            <!-- Login Form -->
-            <form class="formclass mt-3" id="loginForm" method="POST"> 
+                    <!-- Login Form -->
+                    <form class="formclass mt-3" id="loginForm" method="POST"> 
 
-                <i class="fa-solid fa-envelope"></i>
-                <input placeholder="Email" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$" title="please match the requirements">
-        
-                <i class="fa-solid fa-lock"></i>
-                <input placeholder="Password" type="password" name="password" required minlength="8">
-        
-                <button type="submit"> Login </button>
-            </form>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                            <input placeholder="Email" type="email" name="email" class="form-control" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$" title="Please match the requirements">
+                        </div>
+                    
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                            <input placeholder="Password" type="password" name="password" class="form-control" required minlength="8">
+                        </div>
+                    
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
 
-            <p id="message"></p>
+                    <p id="message" class="text-center mt-3"></p>
 
-
+                </div>
+            </div>
 
         </div>
     </div>
-</div>              
-<div>
+</div>
+
                 <button onclick="window.location.href='/register/index.html'" class="btn btn-primary" style="margin: 10px; background-color: beige; color: black";>Register an account</button>
             </div>
 </div>
