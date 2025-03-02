@@ -1,6 +1,5 @@
 # semester-project-2-bootstrap
 ![Screenshot of the homescreen in mobile](https://github.com/Mariuskvaal/semester-project-2-bootstrap/blob/main/images/heartfelt-maamoul-d1cc7e.netlify.app_(iPhone%2012%20Pro)%20(1).png)
-<img src="https://github.com/Mariuskvaal/semester-project-2-bootstrap/blob/main/images/heartfelt-maamoul-d1cc7e.netlify.app_(iPhone%2012%20Pro)%20(1).png" alt="Screenshot of the homescreen in mobile">
 
 ## Overview
 A Bootstrap-based responsive website designed for an engaging user experience across devices, featuring dynamic functionalities such as user profile management and listing creations. 
