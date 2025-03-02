@@ -3,7 +3,11 @@
 
 
 ## Overview
-A Bootstrap-based responsive website designed for an engaging user experience across devices, featuring dynamic functionalities such as user profile management and listing creations.
+A Bootstrap-based responsive website designed for an engaging user experience across devices, featuring dynamic functionalities such as user profile management and listing creations. 
+The user is suppost to bid on items they want and if the win the get the item they bidded on.
+
+- Bid on items (if the user win the bidding round he will get the product)
+- Create a profile and get overview over bids and purchases
 
 ## Code Stack
 - **HTML:** Using Bootstrap Framework for HTML and CSS
@@ -18,8 +22,9 @@ A Bootstrap-based responsive website designed for an engaging user experience ac
 
 ## Getting Started
 1. **Clone** the repository to your local machine.
-2. **Navigate** to `index.html` and open it in a web browser to explore the project.
-3. **Discover** the functionalities available through the navigation menu.
+2. **Install Dependencies** npm install
+3. **Navigate** to `index.html` and open it in a web browser to explore the project.
+4. **Discover** the functionalities available through the navigation menu.
 
 ## Contribution
 Feel free to fork the project and submit pull requests for improvements or new features.
