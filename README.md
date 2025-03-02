@@ -26,5 +26,9 @@ The user is suppost to bid on items they want and if the win the get the item th
 3. **Navigate** to `index.html` and open it in a web browser to explore the project.
 4. **Discover** the functionalities available through the navigation menu.
 
+## Contact
+
+mariuskvaal1@gmail.com
+
 ## Contribution
 Feel free to fork the project and submit pull requests for improvements or new features.
